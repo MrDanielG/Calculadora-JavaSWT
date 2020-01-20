@@ -36,6 +36,7 @@ public class MainWindow {
 	 * Launch the application.
 	 * @param args
 	 */
+	
 	public static void main(String[] args) {
 		try {
 			MainWindow window = new MainWindow();
@@ -106,6 +107,14 @@ public class MainWindow {
 		btnRestar.setText("-");
 		
 		Button btnDivision = new Button(shell, SWT.NONE);
+		btnDivision.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				value1.setText(value2.getText());
+				value2.setText("");
+				op = "division";
+			}
+		});
 		btnDivision.setBounds(202, 119, 59, 41);
 		formToolkit.adapt(btnDivision, true, true);
 		btnDivision.setText("/");
