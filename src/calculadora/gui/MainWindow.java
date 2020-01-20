@@ -66,7 +66,7 @@ public class MainWindow {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(289, 458);
+		shell.setSize(289, 451);
 		shell.setText("Calculadora Practica 02");
 		
 		Button btnMultiplicar = new Button(shell, SWT.NONE);
