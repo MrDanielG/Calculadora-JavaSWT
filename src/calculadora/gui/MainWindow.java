@@ -80,7 +80,7 @@ public class MainWindow {
 		});
 		btnMultiplicar.setBounds(202, 307, 59, 41);
 		formToolkit.adapt(btnMultiplicar, true, true);
-		btnMultiplicar.setText("*");
+		btnMultiplicar.setText("×");
 		
 		Button btnSumar = formToolkit.createButton(shell, "+", SWT.NONE);
 		btnSumar.addSelectionListener(new SelectionAdapter() {
@@ -117,7 +117,7 @@ public class MainWindow {
 		});
 		btnDivision.setBounds(202, 119, 59, 41);
 		formToolkit.adapt(btnDivision, true, true);
-		btnDivision.setText("/");
+		btnDivision.setText("÷");
 		
 		Button button = formToolkit.createButton(shell, "0", SWT.NONE);
 		button.addSelectionListener(new SelectionAdapter() {
@@ -229,13 +229,16 @@ public class MainWindow {
 		});
 		btnPotencia.setBounds(10, 166, 59, 41);
 		
-		Button btnRaizCuadrada = formToolkit.createButton(shell, "r2", SWT.NONE);
+		Button btnRaizCuadrada = formToolkit.createButton(shell, "√", SWT.NONE);
 		btnRaizCuadrada.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				value1.setText(value2.getText());
-				value2.setText("");
-				op = "raizCuadrada";
+				numA = Float.parseFloat(value2.getText());
+				value1.setText("");
+				
+				String resultado = opC.raiz(numA);
+				value2.setText(resultado);
+				value1.setText(resultado);
 			}
 		});
 		btnRaizCuadrada.setBounds(137, 166, 59, 41);
@@ -251,13 +254,16 @@ public class MainWindow {
 		});
 		button_12.setBounds(202, 166, 59, 41);
 		
-		Button btnCuadrado = formToolkit.createButton(shell, "^2", SWT.NONE);
+		Button btnCuadrado = formToolkit.createButton(shell, "x²", SWT.NONE);
 		btnCuadrado.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				value1.setText(value2.getText());
-				value2.setText("");
-				op = "alCuadrado";
+				numA = Float.parseFloat(value2.getText());
+				value1.setText("");
+				
+				String resultado = opC.potenciaCuadrada(numA);
+				value2.setText(resultado);
+				value1.setText(resultado);
 			}
 		});
 		btnCuadrado.setBounds(75, 166, 59, 41);
@@ -278,12 +284,8 @@ public class MainWindow {
 		btnResultado.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if(value1.getText() == "" | value2.getText() == "") {
-					numA = Float.parseFloat(value1.getText());
-				} else {
-					numA = Float.parseFloat(value1.getText());
-					numB = Float.parseFloat(value2.getText());
-				}	
+				numA = Float.parseFloat(value1.getText());
+				numB = Float.parseFloat(value2.getText());
 				
 				if(op == "suma") {
 					String resultado = opS.suma(numA, numB);
@@ -305,16 +307,8 @@ public class MainWindow {
 					String resultado = opC.potencia(numA, numB);
 					value2.setText(resultado);
 					value1.setText(resultado);
-				} else if(op == "alCuadrado") {
-					String resultado = opC.potenciaCuadrada(numA);
-					value2.setText(resultado);
-					value1.setText(resultado);
 				} else if(op == "modulo") {
 					String resultado = opC.modulo(numA, numB);
-					value2.setText(resultado);
-					value1.setText(resultado);
-				} else if(op == "raizCuadrada") {
-					String resultado = opC.raiz(numA);
 					value2.setText(resultado);
 					value1.setText(resultado);
 				} 
