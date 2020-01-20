@@ -1,5 +1,4 @@
 package calculadora.gui;
-
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -17,6 +16,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.ui.forms.widgets.FormText;
+import calculadora.op.OpSimples;
 
 public class MainWindow {
 
@@ -28,6 +28,7 @@ public class MainWindow {
 	String op;
 	private Text value2;
 	private Text value1;
+	OpSimples opS = new OpSimples();
 
 	/**
 	 * Launch the application.
@@ -144,6 +145,12 @@ public class MainWindow {
 		button_3.setBounds(137, 307, 59, 41);
 		
 		Button button_4 = formToolkit.createButton(shell, ".", SWT.NONE);
+		button_4.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				value2.setText(value2.getText()+".");
+			}
+		});
 		button_4.setBounds(140, 354, 56, 41);
 		
 		Button button_5 = formToolkit.createButton(shell, "4", SWT.NONE);
@@ -253,6 +260,14 @@ public class MainWindow {
 		btnResultado.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				float numA = Float.parseFloat(value1.getText());
+				float numB = Float.parseFloat(value2.getText());
+				
+				if(op == "suma") {
+					String resultado = opS.suma(numA, numB);
+					value2.setText(resultado);
+					value1.setText(resultado);
+				} 
 			}
 		});
 		btnResultado.setBounds(202, 354, 59, 41);

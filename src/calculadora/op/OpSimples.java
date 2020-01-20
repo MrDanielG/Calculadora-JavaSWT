@@ -9,7 +9,7 @@ public class OpSimples {
 	
 	public String suma(float num1, float num2) {
 		float sum = num1 + num2;
-		return "a";
+		return String.valueOf(sum);
 	}
 	
 	public float resta(float num1, float num2) {
