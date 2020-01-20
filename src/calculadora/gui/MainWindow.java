@@ -315,12 +315,12 @@ public class MainWindow {
 		formToolkit.adapt(btnResultado, true, true);
 		btnResultado.setText("=");
 		
-		value2 = new Text(shell, SWT.NONE);
+		value2 = new Text(shell, SWT.READ_ONLY);
 		value2.setFont(SWTResourceManager.getFont("Consolas", 20, SWT.NORMAL));
 		value2.setBounds(10, 65, 251, 35);
 		formToolkit.adapt(value2, true, true);
 		
-		value1 = new Text(shell, SWT.RIGHT);
+		value1 = new Text(shell, SWT.READ_ONLY | SWT.RIGHT);
 		value1.setFont(SWTResourceManager.getFont("Consolas", 10, SWT.NORMAL));
 		value1.setBounds(10, 29, 251, 41);
 		formToolkit.adapt(value1, true, true);
