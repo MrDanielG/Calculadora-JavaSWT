@@ -16,19 +16,21 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.ui.forms.widgets.FormText;
-import calculadora.op.OpSimples;
+import calculadora.op.*;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class MainWindow {
 
 	protected Shell shell;
 	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
 	
-	float num1;
-	float num2;
+	float numA = 0;
+	float numB = 0;
 	String op;
 	private Text value2;
 	private Text value1;
 	OpSimples opS = new OpSimples();
+	OpComplejas opC = new OpComplejas();
 
 	/**
 	 * Launch the application.
@@ -252,6 +254,13 @@ public class MainWindow {
 		btnCuadrado.setBounds(75, 166, 59, 41);
 		
 		Button btnBorrar = new Button(shell, SWT.NONE);
+		btnBorrar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				value1.setText("");
+				value2.setText("");
+			}
+		});
 		btnBorrar.setBounds(10, 119, 186, 41);
 		formToolkit.adapt(btnBorrar, true, true);
 		btnBorrar.setText("Borrar");
@@ -260,11 +269,43 @@ public class MainWindow {
 		btnResultado.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				float numA = Float.parseFloat(value1.getText());
-				float numB = Float.parseFloat(value2.getText());
+				if(value1.getText() == "" | value2.getText() == "") {
+					numA = Float.parseFloat(value1.getText());
+				} else {
+					numA = Float.parseFloat(value1.getText());
+					numB = Float.parseFloat(value2.getText());
+				}	
 				
 				if(op == "suma") {
 					String resultado = opS.suma(numA, numB);
+					value2.setText(resultado);
+					value1.setText(resultado);
+				} else if(op == "resta") {
+					String resultado = opS.resta(numA, numB);
+					value2.setText(resultado);
+					value1.setText(resultado);
+				} else if(op == "multiplicacion") {
+					String resultado = opS.multi(numA, numB);
+					value2.setText(resultado);
+					value1.setText(resultado);
+				} else if(op == "division") {
+					String resultado = opS.division(numA, numB);
+					value2.setText(resultado);
+					value1.setText(resultado);
+				} else if(op == "potencia") {
+					String resultado = opC.potencia(numA, numB);
+					value2.setText(resultado);
+					value1.setText(resultado);
+				} else if(op == "alCuadrado") {
+					String resultado = opC.potenciaCuadrada(numA);
+					value2.setText(resultado);
+					value1.setText(resultado);
+				} else if(op == "modulo") {
+					String resultado = opC.modulo(numA, numB);
+					value2.setText(resultado);
+					value1.setText(resultado);
+				} else if(op == "raizCuadrada") {
+					String resultado = opC.raiz(numA);
 					value2.setText(resultado);
 					value1.setText(resultado);
 				} 
@@ -275,11 +316,13 @@ public class MainWindow {
 		btnResultado.setText("=");
 		
 		value2 = new Text(shell, SWT.NONE);
-		value2.setBounds(20, 70, 230, 35);
+		value2.setFont(SWTResourceManager.getFont("Consolas", 20, SWT.NORMAL));
+		value2.setBounds(10, 65, 251, 35);
 		formToolkit.adapt(value2, true, true);
 		
-		value1 = new Text(shell, SWT.NONE);
-		value1.setBounds(126, 29, 124, 35);
+		value1 = new Text(shell, SWT.RIGHT);
+		value1.setFont(SWTResourceManager.getFont("Consolas", 10, SWT.NORMAL));
+		value1.setBounds(10, 29, 251, 41);
 		formToolkit.adapt(value1, true, true);
 
 	}

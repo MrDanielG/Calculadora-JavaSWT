@@ -8,19 +8,18 @@ public class OpSimples {
 	}
 	
 	public String suma(float num1, float num2) {
-		float sum = num1 + num2;
-		return String.valueOf(sum);
+		return String.valueOf(num1 + num2);
 	}
 	
-	public float resta(float num1, float num2) {
-		return num1 - num2;
+	public String resta(float num1, float num2) {
+		return String.valueOf(num1 - num2);
 	}
 	
-	public float multi(float num1, float num2) {
-		return num1 * num2;
+	public String multi(float num1, float num2) {
+		return String.valueOf(num1 * num2);
 	}
 	
-	public float division(float num1, float num2) {
-		return num1 / num2;
+	public String division(float num1, float num2) {
+		return String.valueOf(num1 / num2);
 	}
 }
